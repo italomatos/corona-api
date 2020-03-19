@@ -22,4 +22,6 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: d2q3k7injssimg
+  username: sgnrygzsuiudqy
+  password: <%= ENV['CORONAWS_DATABASE_PASSWORD'] %>
