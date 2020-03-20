@@ -11,17 +11,14 @@ module Api
           result = { date: date, data: [] }
           country = params[:country]
           data = corona_data.find { |item| item['date'] == date }
+          result[:date] = date
 
           if data&.key?('values')
             data['values'].each do |item|
-              if country
-                result[:data] << item if item['uid'].casecmp? country
-              else
+              if !country || country && item['uid'].casecmp?(country)
                 result[:data] << item
               end
             end
-          else
-            result[:date] = date
           end
 
           render json: result
