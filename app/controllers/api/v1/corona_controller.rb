@@ -15,7 +15,7 @@ module Api
           if data&.key?('values')
             data['values'].each do |item|
               if country
-                result[:data] << item if item['uid'] == country
+                result[:data] << item if item['uid'].casecmp? country
               else
                 result[:data] << item
               end

@@ -45,5 +45,22 @@ RSpec.describe 'Api::V1::Coronas', type: :request do
         data: [{ uid: 'BR' }]
       )
     end
+
+    it 'request with valid date and valid country - BR - case insensitive' do
+      date = Time.now - 5.day
+      get api_v1_corona_by_date_path(date: date), params: { country: 'br' }
+      expect(response.body).to include_json(
+        date: date.strftime('%d/%m/%Y'),
+        data: [{ uid: 'BR' }]
+      )
+    end
+
+    it 'request with valid date and with invalid country' do
+      date = Time.now - 5.day
+      get api_v1_corona_by_date_path(date: date), params: { country: 'XY' }
+      expect(response.body).to include_json(
+        date: date.strftime('%d/%m/%Y')
+      )
+    end
   end
 end
