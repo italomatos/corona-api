@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'corona', to: 'corona#index'
+      get 'corona/ranking', to: 'corona#ranking'
       get 'corona/:date',to: 'corona#find_by_date', as: :corona_by_date
     end
   end
